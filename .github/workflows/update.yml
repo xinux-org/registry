@@ -1,0 +1,30 @@
+name: "Generate package versions"
+
+on:
+  workflow_dispatch:
+  schedule:
+  - cron: '*/15 * * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - uses: DeterminateSystems/nix-installer-action@v4
+
+    - uses: DeterminateSystems/magic-nix-cache-action@v2
+
+    - name: Update files
+      run: |
+        sleep $((RANDOM % 60))
+        ./generate-current.sh
+        ./generate-versions.sh
+
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Update version data
+        commit_user_email: support@floss.uz
+        commit_author: GitHub Actions <support@floss.uz>

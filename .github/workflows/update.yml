@@ -3,7 +3,7 @@ name: "Generate package versions"
 on:
   workflow_dispatch:
   schedule:
-  - cron: '*/15 * * * *'
+  - cron: '0 0 * * *'
 
 jobs:
   build:

@@ -22,7 +22,6 @@ jobs:
 
     - name: Update files
       run: |
-        sleep $((RANDOM % 60))
         ./generate-current.sh
         ./generate-versions.sh
 

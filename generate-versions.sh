@@ -6,7 +6,7 @@ do
     if [[ -f "history" ]]; then
         rm history
     fi
-    wget "https://raw.githubusercontent.com/grahamc/nix-channel-monitor/main/data/${Line}/history"
+    wget "https://raw.githubusercontent.com/xinux-org/monitor/main/data/${Line}/history"
     for version in $(cat history | rev | cut -c12- | rev | tail -300)
     do
         if [[ ! -f "${version}.json.br" ]]; then

@@ -6,7 +6,7 @@ on:
       - main
   workflow_dispatch:
   schedule:
-  - cron: '0 0 * * *'
+    - cron: "0 0 * * *"
 
 jobs:
   build:
@@ -16,21 +16,20 @@ jobs:
       contents: write
 
     steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-    - uses: DeterminateSystems/nix-installer-action@v4
+      - name: Install nix package manager
+        uses: DeterminateSystems/nix-installer-action@v4
 
-    - uses: DeterminateSystems/magic-nix-cache-action@v2
+      - name: Update files
+        run: |
+          ./generate-current.sh
+          ./generate-versions.sh
 
-    - name: Update files
-      run: |
-        ./generate-current.sh
-        ./generate-versions.sh
-
-    - uses: stefanzweifel/git-auto-commit-action@v4
-      with:
-        commit_message: Update version data
-        commit_user_email: support@floss.uz
-        commit_author: GitHub Actions <support@floss.uz>
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Update version data
+          commit_user_email: support@floss.uz
+          commit_author: GitHub Actions <support@floss.uz>

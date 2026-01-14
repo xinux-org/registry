@@ -11,6 +11,23 @@
 }: let
   # Helpful functions
   inherit (pkgs) lib;
+
+  wrapper = script: ''
+    wrapProgram $out/bin/${script} \
+      --set PATH ${lib.makeBinPath (with pkgs; [
+      curl
+      wget
+      coreutils
+      findutils
+      gnumake
+      gnused
+      gnugrep
+      gawk
+      git
+      jq
+      recode
+    ])}
+  '';
 in
   pkgs.stdenv.mkDerivation rec {
     pname = "registry";
@@ -31,6 +48,7 @@ in
 
     nativeBuildInputs = with pkgs; [
       shellcheck
+      makeWrapper
     ];
 
     installPhase = ''
@@ -38,6 +56,13 @@ in
       install -Dv generate-versions $out/bin/generate-versions
       install -Dv versions $out/bin/versions
       install -Dv generate $out/bin/generate
+    '';
+
+    postFixup = ''
+      ${wrapper "generate-current"}
+      ${wrapper "generate-versions"}
+      ${wrapper "versions"}
+      ${wrapper "generate"}
     '';
 
     meta = with lib; {

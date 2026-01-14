@@ -22,6 +22,7 @@ in
       gnused
       jq
       recode
+      util-linux
     ];
 
     shellHook = ''

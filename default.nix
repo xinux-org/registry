@@ -26,6 +26,7 @@
       git
       jq
       recode
+      util-linux
     ])}
   '';
 in

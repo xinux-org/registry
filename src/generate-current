@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+
+set -eu
+
 for Line in $(cat versions)
 do
     mkdir -p $Line
@@ -9,7 +12,7 @@ do
     wget "https://channels.nixos.org/${Line}/git-revision"
     version=$(cat git-revision)
     if [[ ! -f "${version}.json.br" ]]; then
-        ../versions.sh $version
+        "$1/versions" $version
     fi
     rm git-revision
     cd ..

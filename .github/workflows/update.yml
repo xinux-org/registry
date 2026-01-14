@@ -16,20 +16,16 @@ jobs:
       contents: write
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
-      - name: Install nix package manager
-        uses: DeterminateSystems/nix-installer-action@v4
-
       - name: Update files
-        run: |
-          ./generate-current.sh
-          ./generate-versions.sh
+        working-directory: ./data
+        run: nix run
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: Update version data
-          commit_user_email: support@floss.uz
-          commit_author: GitHub Actions <support@floss.uz>
+          commit_message: Update version data ${{ github.event.repository.updated_at}}
+          commit_user_email: buckle_scouts3y@icloud.com
+          commit_author: Xinux Manager <buckle_scouts3y@icloud.com>

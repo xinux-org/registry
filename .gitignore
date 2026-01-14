@@ -1,1 +1,8 @@
+# Nix
+/result
+
+# Direnv
+/.direnv
+
+# Generated nix
 generate-nix*

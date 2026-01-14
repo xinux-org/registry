@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -euxo pipefail
+
+scripts="$(cd "$(dirname "$0")" && pwd)"
+
+"$scripts/generate-current" "$scripts"
+"$scripts/generate-versions" "$scripts"

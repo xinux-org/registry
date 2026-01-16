@@ -28,6 +28,7 @@
       recode
       util-linux
       nix
+      brotli
     ])}
   '';
 in

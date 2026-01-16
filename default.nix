@@ -27,6 +27,7 @@
       jq
       recode
       util-linux
+      nix
     ])}
   '';
 in

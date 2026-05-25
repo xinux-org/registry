@@ -29,7 +29,11 @@ jobs:
           git config --global user.name "Uzinfocom Asssistant"
           git config --global user.email "support@oss.uzinfocom.uz"
           git add .
-          git commit -m "Update version data ${{ github.event.repository.updated_at}}"
+
+          _changes="$(git status --porcelain)"
+          if [ -n $_changes ]; then
+            git commit -m "Update version data ${{ github.event.repository.updated_at}}"
+          fi
 
       - name: Push changes
         run: |

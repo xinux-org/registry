@@ -32,6 +32,7 @@ jobs:
 
           _changes="$(git status --porcelain)"
           if [ -n $_changes ]; then
+            echo Change has been detected
             git commit -m "Update version data ${{ github.event.repository.updated_at}}"
           fi
 

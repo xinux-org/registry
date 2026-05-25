@@ -1,0 +1,40 @@
+name: "Generate package versions"
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  build:
+    runs-on: native
+
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Update files
+        working-directory: ./data
+        run: nix run
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "Uzinfocom Asssistant"
+          git config --global user.email "support@oss.uzinfocom.uz"
+          git add .
+          git commnit -m "Update version data ${{ github.event.repository.updated_at}}"
+
+      - name: Push changes
+        run: |
+          git config --global user.name "Uzinfocom Asssistant"
+          git config --global user.email "support@oss.uzinfocom.uz"
+          git remote rm origin
+          git remote add origin "https://support:${{ secrets.PAT }}@git.oss.uzinfocom.uz/xinux/registry.git"
+          git push --set-upstream origin main

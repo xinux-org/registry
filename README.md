@@ -1,5 +1,5 @@
 <p align="center">
-    <img src=".github/assets/header.png" alt="Xinux'es {Registry}">
+    <img src=".forgejo/assets/header.png" alt="Xinux'es {Registry}">
 </p>
 
 <p align="center">
@@ -27,5 +27,5 @@ Datas stored inside `data/` and organized according to branch names which includ
 This project is licensed under the MIT license - see the [LICENSE](LICENSE) file for details.
 
 <p align="center">
-    <img src=".github/assets/footer.png" alt="Xinux'es {Registry}">
+    <img src=".forgejo/assets/footer.png" alt="Xinux'es {Registry}">
 </p>

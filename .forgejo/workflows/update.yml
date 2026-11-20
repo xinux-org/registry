@@ -26,8 +26,8 @@ jobs:
 
       - name: Commit changes
         run: |
-          git config --global user.name "Uzinfocom Asssistant"
-          git config --global user.email "support@oss.uzinfocom.uz"
+          git config --global user.name "ogiloy"
+          git config --global user.email "ogiloy@uzinfocom.uz"
           git add .
 
           _changes="$(git status --porcelain)"
@@ -38,8 +38,8 @@ jobs:
 
       - name: Push changes
         run: |
-          git config --global user.name "Uzinfocom Asssistant"
-          git config --global user.email "support@oss.uzinfocom.uz"
+          git config --global user.name "ogiloy"
+          git config --global user.email "ogiloy@uzinfocom.uz"
           git remote rm origin
-          git remote add origin "https://support:${{ secrets.PAT }}@git.oss.uzinfocom.uz/xinux/registry.git"
+          git remote add origin "https://ogiloy:${{ secrets.PAT }}@git.oss.uzinfocom.uz/xinux/registry.git"
           git push --set-upstream origin main
